@@ -1,33 +1,33 @@
-const express =  require('express')
+const express = require("express");
+const path = require("path");
+const bodyParser = require('body-parser');
+const productsRouter = require('./routes/views/products');
+const productsApiRouter = require('./routes/api/products');
 
-const path = require("path")
-const productsRouter = require('./routes/views/products')
-const productosApiRouter = require('./routes/api/products')
-const bodyParser = require('body-parser')
+// app
+const app = express();
 
-//Inicializacion de aplicacion con express
-const app = express()
-
-//Middlewares
+// middlewares
 app.use(bodyParser.json());
 
-//Manejo de los archi static
-app.use("/static", express.static(path.join(__dirname,"public")))
+// static files
+app.use("/static", express.static(path.join(__dirname, "public")));
 
-//Vistas de pug
-app.set("views", path.join(__dirname, 'git iviews'))
-app.set("view engine","pug")
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 
-//Rutas
-app.use('/products',productsRouter)
-app.use("/api/product", productosApiRouter)
+ 
+// routes
+app.use("/products", productsRouter);
+app.use("/api/products", productsApiRouter);
 
-//Redireccionando a vista products
-app.get('/', (req, res) => {
-    res.redirect('/products')
-})
+// redirect
+app.get('/', function(req, res) {
+  res.redirect('/products');
+});
 
-//Server Inicialización
-const server = app.listen(8000, () => {
-    console.log(`Listening htto://localhost:${server.address().port}`)
-})
+// server
+const server = app.listen(8000, function() {
+  console.log(`Listening http://localhost:${server.address().port}`);
+});

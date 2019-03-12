@@ -1,4 +1,4 @@
-const productsMocks = [
+const productMocks = [
     {
       name: "Red shoes",
       price: 75,
@@ -11,4 +11,4 @@ const productsMocks = [
     }
   ];
 
-  module.exports = productsMocks;
+  module.exports = productMocks;
