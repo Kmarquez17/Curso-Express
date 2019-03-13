@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const ProductsService = require("../../services/products");
+const MongoLib = require('../../lib/mongo')
 
 const productService = new ProductsService();
+// const mongoC = new MongoLib()
 
 router.get("/", async function(req, res, next) {
   const { tags } = req.query;
@@ -11,6 +13,7 @@ router.get("/", async function(req, res, next) {
 
   try {
     const products = await productService.getProducts({ tags });
+    //mongoC.disconnect();
 
     res.status(200).json({
       data: products,
