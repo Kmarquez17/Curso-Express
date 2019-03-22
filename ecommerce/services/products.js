@@ -8,8 +8,9 @@ class ProductsService {
   }
 
   async getProducts({ tags }) {
-    const query = tags && { tags: { $in: tags } };  
+    const query = tags && { tags: { $in: tags } };
     const products = await this.mongoDB.getAll(this.collection, query);
+
     return products || [];
   }
 
@@ -20,6 +21,7 @@ class ProductsService {
 
   async createProduct({ product }) {
     const createProductId = await this.mongoDB.create(this.collection, product);
+
     return createProductId;
   }
 
